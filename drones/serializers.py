@@ -35,7 +35,7 @@ class DroneSerializer(serializers.HyperlinkedModelSerializer):
         
 class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
     
-    drone = DroneSerializer()
+    drones = DroneSerializer()
     class Meta:
         model = Competition
         fields = (
@@ -43,7 +43,8 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
         'pk',
         'distance_in_feet',
         'distance_achievement_date',
-        'drone')
+        'drone',
+        )
             
     
 class PilotSerializer(serializers.HyperlinkedModelSerializer):
