@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-o(d$ei9^ubro27k#q)henvhldye2gtgi2++(61b20%wc-^1uj8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'drones.apps.DronesConfig'
+    'drones.apps.DronesConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -92,10 +93,15 @@ DATABASES = {
 }
 REST_FRAMEWORK = {
 'DEFAULT_PAGINATION_CLASS':
-'rest_framework.pagination.LimitOffsetPagination',
-'PAGE_SIZE': 2
+'drones.custompagination.LimitOffsetPaginationWithUpperBound',
+'PAGE_SIZE': 4,
+'DEFAULT_FILTER_BACKENDS': (
+    'django_filters.rest_framework.DjangoFilterBackend',
+    'rest_framework.filters.OrderingFilter',
+    'rest_framework.filters.SearchFilter',
+),
 }
-
+    
 
 
 # Password validation
