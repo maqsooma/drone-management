@@ -20,6 +20,9 @@ class Drone(models.Model):
     has_it_competed = models.BooleanField(default= False)
     inserted_time = models.DateTimeField(auto_now_add=True)
     
+    owner = models.ForeignKey('auth.user',
+                              related_name='drones',
+                              on_delete=models.CASCADE)
     
     class Meta:
         ordering = ('name',)
